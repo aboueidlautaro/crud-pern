@@ -30,7 +30,6 @@ function Login() {
     <div className="formContainer">
       <label>Usuario: </label>
       <input
-        id="inputCreatePost"
         type="text"
         placeholder="Ingrese su usuario"
         onChange={(event) => {
@@ -40,7 +39,6 @@ function Login() {
       <label>Contraseña: </label>
       <span className="messageForm">{messageForm}</span>
       <input
-        id="inputCreatePost"
         type="password"
         placeholder="Ingrese su contraseña"
         onChange={(event) => {

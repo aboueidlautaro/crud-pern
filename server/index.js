@@ -12,9 +12,12 @@ process.on("uncaughtException", function (err) {
   console.log(err);
   var stack = err.stack;
 });
-
-const usersRouter = require("./routes/users");
+const articlesRouter = require("./routes/Articles");
+app.use("/articles", articlesRouter);
+const usersRouter = require("./routes/Users");
 app.use("/auth", usersRouter);
+const favsRouter = require("./routes/Favs");
+app.use("/favs", favsRouter);
 
 db.sequelize
   .sync()

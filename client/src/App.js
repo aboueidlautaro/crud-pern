@@ -13,6 +13,8 @@ function App() {
     username: "",
     id: 0,
     status: false,
+    user_role: "",
+    favs: [],
   });
   useEffect(() => {
     axios
@@ -28,6 +30,7 @@ function App() {
           setAuthState({
             username: response.data.username,
             id: response.data.id,
+            user_role: response.data.user_role,
             status: true,
           });
         }
@@ -38,9 +41,13 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/">
+            <Route index element={<Home />} />
+          </Route>
+          <Route path="/">
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
         </Routes>
       </Router>
     </AuthContext.Provider>

@@ -20,7 +20,7 @@ router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
   const user = await users.findOne({
-    where: { username: username },
+    where: { username: user.username },
   });
 
   if (!user) res.json({ error: "El usuario ingresado no existe" });
@@ -29,13 +29,20 @@ router.post("/login", async (req, res) => {
     if (!match) res.json({ error: "Contraseña incorrecta" });
 
     const accessToken = sign(
-      { username: user.username, id: user.id },
+      {
+        username: user.username,
+        id: user.id,
+        user_role: user.user_role,
+        favs: user.favs,
+      },
       "importantsecret"
     );
     res.json({
       token: accessToken,
       username: username,
       id: user.id,
+      user_role: user.user_role,
+      favs: user.favs,
     });
   });
 });
